@@ -11,11 +11,17 @@ RUN usermod -aG sudo hewei
 
 # install new softwares
 RUN apt-get -y install vim
+RUN apt-get -y install sudo
+RUN apt-get -y install git
 RUN pip install notebook
+
+# reset password
+RUN echo 'hewei:hewei' | chpasswd
 
 # build new environment
 WORKDIR /home/hewei
 USER hewei
+
 EXPOSE 8000
 
 # entrypoint
